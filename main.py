@@ -1,6 +1,9 @@
 from datetime import datetime
 import time
 import logging
+from newzcraper.spiders import GuardianSpider
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
 
 if __name__ == '__main__':
     logging.basicConfig(
@@ -9,7 +12,11 @@ if __name__ == '__main__':
         datefmt='%Y-%m-%d %H:%M:%S'
     )
 
-    from crud import crud
+    process = CrawlerProcess(get_project_settings())
+
+    process.crawl(GuardianSpider.GuardianSpider)
+    process.start()
+
 
     while True:
         time.sleep(60)

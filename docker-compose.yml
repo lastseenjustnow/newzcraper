@@ -39,7 +39,7 @@ services:
       MONGO_ADMINUSERNAME: root
       MONGO_ADMINPASSWORD: example
     volumes:
-      - ./crud:/app/crud
+      - ./newzcraper:/app/newzcraper
     networks:
       - newzcraper
 networks:

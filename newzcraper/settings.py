@@ -7,6 +7,8 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+import os
+
 BOT_NAME = 'newzcraper'
 
 SPIDER_MODULES = ['newzcraper.spiders']
@@ -62,9 +64,15 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'newzcraper.pipelines.GuardianPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'newzcraper.pipelines.MongoPipeline': 300,
+}
+
+u = os.environ['MONGO_ADMINUSERNAME']
+p = os.environ['MONGO_ADMINPASSWORD']
+
+MONGODB_URI = f"mongodb://{u}:{p}@mongo:27017"
+MONGODB_DB = "guardian"
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
