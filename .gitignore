@@ -2,6 +2,7 @@
 *test.py
 .idea/
 __pycache__/
+_tmp_html
 
 # Environments
 .env
