@@ -14,3 +14,7 @@ class GuardianItem(scrapy.Item):
     pub_date = scrapy.Field()
     text = scrapy.Field()
     insert_ts = scrapy.Field()
+
+    def __repr__(self):
+        """only print out title after exiting the Pipeline"""
+        return repr({"title": self['title']})

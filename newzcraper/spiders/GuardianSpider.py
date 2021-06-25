@@ -4,6 +4,7 @@ from itertools import chain
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from newzcraper.items import GuardianItem
+from readability.cleaners import normalize_spaces
 
 
 class GuardianSpider(CrawlSpider):
@@ -32,6 +33,6 @@ class GuardianSpider(CrawlSpider):
             item['title'] = quote.xpath('//title/text()').extract()[0]
             item['author'] = quote.xpath('//a[@rel="author"]/text()').get()
             item['pub_date'] = quote.css('div.dcr-s64set label::text').get()
-            item['text'] = ' '.join(chain(response.css('div.dcr-185kcx9 p::text').getall()))
+            item['text'] = normalize_spaces(' '.join(chain(response.css('div.dcr-185kcx9 p::text').getall())))
             item['insert_ts'] = datetime.now()
             yield item
