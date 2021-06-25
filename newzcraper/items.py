@@ -8,6 +8,7 @@ import scrapy
 
 class GuardianItem(scrapy.Item):
     url = scrapy.Field()
+    category = scrapy.Field()
     title = scrapy.Field()
     author = scrapy.Field()
     pub_date = scrapy.Field()
