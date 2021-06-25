@@ -17,6 +17,6 @@ if __name__ == '__main__':
     process.crawl(GuardianSpider.GuardianSpider)
     process.start()
 
-
     while True:
+        logging.info("Sleeping...")
         time.sleep(60)

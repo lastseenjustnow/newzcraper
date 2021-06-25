@@ -1,5 +1,14 @@
-FROM python:3.7-alpine
-RUN apk add nmap
+FROM python:3.7.10-alpine3.13
+RUN apk add \
+    nmap \
+    gcc \
+    musl-dev \
+    python3-dev \
+    libffi-dev \
+    openssl-dev \
+    libxml2-dev \
+    libxslt-dev \
+    cargo
 
 
 COPY . /app
