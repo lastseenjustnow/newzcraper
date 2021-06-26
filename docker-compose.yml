@@ -30,7 +30,7 @@ services:
     networks:
       - newzcraper
   newzcraper:
-    build: .
+    build: newzcraper
     container_name: newzcraper
     depends_on:
       - mongo
@@ -41,7 +41,24 @@ services:
       DB_NAME: "${DB_NAME}"
       COLLECTION_NAME: "${COLLECTION_NAME}"
     volumes:
-      - ./newzcraper:/app/newzcraper
+      - ./newzcraper:/app
+    networks:
+      - newzcraper
+  flask:
+    build: flask
+    container_name: flask
+    depends_on:
+      - mongo
+    environment:
+      PYTHONUNBUFFERED: 1
+      MONGO_ADMINUSERNAME: "${ROOT}"
+      MONGO_ADMINPASSWORD: "${PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      COLLECTION_NAME: "${COLLECTION_NAME}"
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./flask:/app
     networks:
       - newzcraper
 networks:
