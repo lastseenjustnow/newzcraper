@@ -72,7 +72,7 @@ u = os.environ['MONGO_ADMINUSERNAME']
 p = os.environ['MONGO_ADMINPASSWORD']
 
 MONGODB_URI = f"mongodb://{u}:{p}@mongo:27017"
-MONGODB_DB = "guardian"
+MONGODB_DB = os.environ['DB_NAME']
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

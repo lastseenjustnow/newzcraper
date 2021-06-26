@@ -9,8 +9,8 @@ services:
     container_name: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_ROOT_USERNAME: "${ROOT}"
+      MONGO_INITDB_ROOT_PASSWORD: "${PASSWORD}"
     ports:
       - "27017:27017"
     networks:
@@ -24,8 +24,8 @@ services:
     ports:
       - 8081:8081
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: root
-      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "${ROOT}"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${PASSWORD}"
       ME_CONFIG_MONGODB_SERVER: mongo
     networks:
       - newzcraper
@@ -36,8 +36,10 @@ services:
       - mongo
     environment:
       PYTHONUNBUFFERED: 1
-      MONGO_ADMINUSERNAME: root
-      MONGO_ADMINPASSWORD: example
+      MONGO_ADMINUSERNAME: "${ROOT}"
+      MONGO_ADMINPASSWORD: "${PASSWORD}"
+      DB_NAME: "${DB_NAME}"
+      COLLECTION_NAME: "${COLLECTION_NAME}"
     volumes:
       - ./newzcraper:/app/newzcraper
     networks:

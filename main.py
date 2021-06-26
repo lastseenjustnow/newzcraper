@@ -1,5 +1,3 @@
-from datetime import datetime
-import time
 import logging
 from newzcraper.spiders import GuardianSpider
 from scrapy.crawler import CrawlerProcess
@@ -12,11 +10,9 @@ if __name__ == '__main__':
         datefmt='%Y-%m-%d %H:%M:%S'
     )
 
+    from mongo import crud
+
     process = CrawlerProcess(get_project_settings())
 
     process.crawl(GuardianSpider.GuardianSpider)
     process.start()
-
-    while True:
-        logging.info("Sleeping...")
-        time.sleep(60)

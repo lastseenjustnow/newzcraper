@@ -3,6 +3,7 @@
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 
+import os
 
 from pymongo import MongoClient
 from pymongo.collection import Collection
@@ -11,7 +12,7 @@ from itemadapter import ItemAdapter
 
 class MongoPipeline:
 
-    collection_name = 'url_pages'
+    collection_name = os.environ['COLLECTION_NAME']
 
     def __init__(self, mongo_uri, mongo_db):
         self.mongo_uri = mongo_uri
