@@ -4,4 +4,11 @@
 </head>
 <h1>Hello from MongoDB! Our databases are:</h1>
 {{ table }}
+
+<form method=post action="/search_by_keyword">
+    <label for="keyword">Input a keyword:</label>
+    <input type="text" id="keyword" name="keyword">
+    <input type="submit" name="search" value="Search!">
+</form>
+
 <body>
