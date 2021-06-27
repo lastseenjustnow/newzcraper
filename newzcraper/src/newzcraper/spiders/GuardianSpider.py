@@ -8,6 +8,12 @@ from readability.cleaners import normalize_spaces
 
 
 class GuardianSpider(CrawlSpider):
+
+    """
+    This class implements crawling through www.theguardian.com and parsing articles.
+    An article is detected in case it has a date specifically formatted in the link.
+    """
+
     name = 'guardian'
     domain = 'www.theguardian.com'
     allowed_domains = [domain]
@@ -24,6 +30,15 @@ class GuardianSpider(CrawlSpider):
     )
 
     def parse(self, response):
+
+        """
+        This function attempts to recognize an article and extract needed data using predefined tags.
+        Tags are specifically set, could be created more generic solution for various types of news sites.
+
+        :param response: response from media web service
+        :return: generator of documents
+        """
+
         self.logger.info('An article has been found at %s', response.url)
 
         for quote in response.css('div.dcr-1ipk5a'):

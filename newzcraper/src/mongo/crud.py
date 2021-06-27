@@ -1,3 +1,5 @@
+# Imported to ensure database option to search through strings
+
 import logging
 import os
 

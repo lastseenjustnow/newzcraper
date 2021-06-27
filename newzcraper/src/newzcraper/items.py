@@ -16,5 +16,5 @@ class GuardianItem(scrapy.Item):
     insert_ts = scrapy.Field()
 
     def __repr__(self):
-        """only print out title after exiting the Pipeline"""
+        """Overwritten to avoid huge logs in debug mode. It drastically shrinks console output. """
         return repr({"title": self['title']})

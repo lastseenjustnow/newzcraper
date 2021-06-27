@@ -11,6 +11,9 @@ from itemadapter import ItemAdapter
 
 
 class MongoPipeline:
+    """
+    This class implements functionality for preprocessing scraped data & sending it to MongoDB.
+    """
 
     collection_name = os.environ['COLLECTION_NAME']
 
@@ -34,5 +37,10 @@ class MongoPipeline:
         self.client.close()
 
     def process_item(self, item, spider):
+        """
+        This method defines a strategy for database population.
+        Replacement is used here to avoid duplicates in the db, another approach that could be applied -
+        to create an index for url in a database level. In this case exceptions must be handled properly.
+        """
         self.collection_name.replace_one({'url': item['url']}, ItemAdapter(item).asdict(), upsert=True)
         return item
